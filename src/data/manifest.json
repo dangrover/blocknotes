@@ -1,0 +1,11 @@
+{
+    "name": "Blocknotes",
+    "start_url": "http://dangrover.com",
+    "description": "Your notes, on blockstack!",
+    "icons": [{
+      "src": "http://blockstack-todos.appartisan.com/logo.png",
+      "sizes": "400x400",
+      "type": "image/png"
+    }]
+  }
+  

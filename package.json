@@ -14,7 +14,9 @@
   },
   "homepage": "https://github.com/dangrover/blocknotes#readme",
   "devDependencies": {
+    "cors": "^2.8.4",
     "grunt": "^1.0.1",
+    "grunt-browserify": "^5.2.0",
     "grunt-cache-bust": "^1.6.0",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.1.0",
