@@ -37,8 +37,7 @@ module.exports = function(grunt) {
       uglify:{
           js:{
               files:{
-                  'build/js/vendor.js':'build/js/vendor.js',
-                  'build/js/app.js':'build/js/app.js',
+                  'build/js/bundle.js':'build/js/bundle.js'
               },
           }
       },
@@ -85,19 +84,13 @@ module.exports = function(grunt) {
             }
       },
     clean: ['build/**'],
-    'gh-pages': {
-      options: {
-        base: 'build'
-      },
-      src: ['**']
-    },
     connect: {
       server:{
         options:{
             port: 8080,
             base: './build',
             middleware:function(connect, options, middlewares) {
-                // Allow cross origin requests so that we can serve the manifest.json
+                // Allow cross origin requests so that we can serve the manifest.json to blockstack
                 var cors = require('cors');
                 middlewares.unshift(cors());
                 return middlewares;
@@ -105,7 +98,7 @@ module.exports = function(grunt) {
         }
     }
     },
-   });
+});
   
   
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -117,7 +110,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-json-minify');
-    grunt.loadNpmTasks('grunt-gh-pages');
     grunt.loadNpmTasks('grunt-minify-html');
     grunt.loadNpmTasks('grunt-cache-bust');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -130,6 +122,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('prod', ['clean','default','uglify']);
 
-    grunt.registerTask('publish', ['prod', 'gh-pages']);
   };
   
