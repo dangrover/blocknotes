@@ -120,7 +120,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('dev', ['default', 'connect', 'watch']);
 
-    grunt.registerTask('prod', ['clean','default','uglify']);
+    grunt.registerTask('prod', ['clean','default','uglify','minifyHtml']);
 
   };
   
