@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <title>Blocknotes</title>
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="css/app.css"></link>
+    </head>
+    <body>
+
+        <div class="container-fluid" id="notes-app">
+            <div class="row" id="header">
+                <div class="col-md-9 col-sm-9" id="title">
+                    blocknotes
+                </div>
+                <div class="col-md-3 col-sm-3" id="user-id">
+                    <div id="logged-in" v-if="userData">
+                        <span class="username">{{user.name()}}</span>
+                        <button class="btn btn-default btn-xs" v-on:click="logOut">Log Out</button>
+                    </div>
+                    <div id="anon" v-else>
+                        <button class="btn btn-default btn-xs" v-on:click="logIn">Log In</button>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-3" id="notes-list">
+                    <ul class="list-unstyled">
+                        <li v-for="(note, idx) in notesIndex.notes" 
+                            v-on:click="showNote(note.id)" 
+                            v-bind:class="{active: activeNote && (note.id == activeNote.id)}">
+                            {{note.title}}
+                        </li>
+                    </ul>
+                    <button class="btn" v-on:click="newNote()">New</button>
+                </div>
+
+
+                <div class="col-md-6 col-sm-6" id="notes-body">
+                   
+                    <div id="note-editor" v-if="activeNote">
+                        <form action="#">
+                        <input id="note-title" v-model="activeNote.title" placeholder="Title" class="form-control input-lg col-sm-6 col-md-6"/>
+                        <br/><br/>
+                        <textarea v-model="activeNote.src" id="note-body" class="form-control col-sm-6-col-md-6"></textarea>
+                        <br/>
+                        
+                        </form>
+                        <button class="btn btn-primary" v-on:click="saveActiveNote()">
+                                Save
+                            </button>
+                    </div>
+                    <div id="no-note" v-else>
+                            Choose a note!
+                        </div>
+                </div>
+
+            </div>
+
+            <div class="row" id="footer">
+                footer
+            </div>
+        </div>
+
+        <script src="js/bundle.js"></script>
+    </body>
+</html>
